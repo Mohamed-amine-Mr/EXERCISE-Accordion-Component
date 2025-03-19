@@ -45,7 +45,7 @@ function AccordionaItem({ title, num, text }) {
   }
 
   return (
-    <div className="item" onClick={handleToggle}>
+    <div className={`item ${isOpen ? "open" : ""}`} onClick={handleToggle}>
       <p className="number">{num}</p>
       <p className="title">{title}</p>
       <p className="icon">{isOpen ? "-" : "+"}</p>

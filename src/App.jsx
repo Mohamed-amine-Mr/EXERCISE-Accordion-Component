@@ -25,7 +25,7 @@ export default function App() {
 
 function Accordion({ data }) {
   return (
-    <div>
+    <div className="accordion">
       {data.map((e, i) => (
         <AccordionaItem
           title={e.title}
@@ -38,11 +38,17 @@ function Accordion({ data }) {
 }
 function AccordionaItem({ title, num, text }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  function handleToggle() {
+    setIsOpen((cur) => !cur);
+  }
+
+  function open() {}
   return (
-    <div className="item ">
+    <div className="item" onClick={handleToggle}>
       <p className="number">{num}</p>
       <p className="title">{title}</p>
-      <p className="icon ">{isOpen ? "-" : "+"}</p>
+      <p className="icon">{isOpen ? "-" : "+"}</p>
       {isOpen && <div className="content-box">{text}</div>}{" "}
     </div>
   );

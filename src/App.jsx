@@ -31,6 +31,7 @@ function Accordion({ data }) {
           title={e.title}
           text={e.text}
           num={i <= 9 ? `0${i + 1}` : i}
+          key={e.title}
         />
       ))}
     </div>
@@ -40,10 +41,9 @@ function AccordionaItem({ title, num, text }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleToggle() {
-    setIsOpen((cur) => !cur);
+    setIsOpen((isOpen) => !isOpen);
   }
 
-  function open() {}
   return (
     <div className="item" onClick={handleToggle}>
       <p className="number">{num}</p>

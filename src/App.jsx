@@ -1,5 +1,5 @@
 import "./styles.css";
-
+import { useState } from "react";
 const faqs = [
   {
     title: "Where are these chairs assembled?",
@@ -37,12 +37,13 @@ function Accordion({ data }) {
   );
 }
 function AccordionaItem({ title, num, text }) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="item ">
       <p className="number">{num}</p>
       <p className="title">{title}</p>
-      <p className="icon ">+</p>
-      <div className="content-box">{text}</div>
+      <p className="icon ">{isOpen ? "-" : "+"}</p>
+      {isOpen && <div className="content-box">{text}</div>}{" "}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import "./styles.css";
 import { useState } from "react";
+
 const faqs = [
   {
     title: "Where are these chairs assembled?",
@@ -26,30 +27,40 @@ export default function App() {
 function Accordion({ data }) {
   return (
     <div className="accordion">
-      {data.map((e, i) => (
-        <AccordionaItem
-          title={e.title}
-          text={e.text}
-          num={i <= 9 ? `0${i + 1}` : i}
-          key={e.title}
+      {data.map((item, index) => (
+        <Item
+          title={item.title}
+          text={item.text}
+          key={index}
+          number={index + 1}
         />
       ))}
     </div>
   );
 }
-function AccordionaItem({ title, num, text }) {
-  const [isOpen, setIsOpen] = useState(false);
+function Item({ title, number, text }) {
+  const [open, setOpen] = useState(false);
 
-  function handleToggle() {
-    setIsOpen((isOpen) => !isOpen);
-  }
+  let numWith0 = number <= 9 ? `0${number}` : number;
 
   return (
-    <div className={`item ${isOpen ? "open" : ""}`} onClick={handleToggle}>
-      <p className="number">{num}</p>
-      <p className="title">{title}</p>
-      <p className="icon">{isOpen ? "-" : "+"}</p>
-      {isOpen && <div className="content-box">{text}</div>}{" "}
-    </div>
+    <>
+      <div
+        className={`item ${open ? "open" : ""}`}
+        onClick={() => setOpen(!open)}
+      >
+        <>
+          <p className="number">{numWith0}</p>
+          <p className="title ">{title}</p>
+          <p className="icon">-</p>
+        </>
+
+        {open && (
+          <>
+            <div className="content-box ">{text}</div>
+          </>
+        )}
+      </div>
+    </>
   );
 }
